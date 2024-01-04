@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LBN</title>
+  <style>
+
+    
+    .slide {
+      display: none;
+      max-width: 100%;
+      margin: auto; /* Center the image horizontally and vertically */
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      background-image: url('https://i.pinimg.com/564x/b9/91/6c/b9916c5337e80fba8183712fd34a3e75.jpg');
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      font-family: 'Papyrus', serif;
+    }
+
+    header {
+      color: #fff;
+      text-align: center;
+      padding: 0;
+      position: relative;
+      width: 100%;
+      margin-top:10px;
+    }
+
+
+    img {
+      width: 75%;
+      height: auto;
+      max-width: 100%;
+      max-height: 15vh;
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+      z-index: 1;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+    }
+
+
+    
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-50%) rotate(0 deg) scale(0);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(-50%) rotate(0 deg) scale(1);
+      }
+    }
+
+    h1 {
+      position: absolute;
+      top: 167%;
+      left: 70%;
+      transform: translateX(-50%);
+      margin-top: 0px;
+      margin-left: 0px;
+      color: #353330;
+      font-size: 80px;
+      font-family: 'Papyrus', sans-serif;
+      animation: fadeIn 6s ease-in-out;
+    }
+
+    h1::first-letter {
+      font-size: 140px;
+    }
+
+    .streaming{
+      position:absolute;
+      top:92%;
+      left:36%;
+      /*color:#322a20;*/
+      color:#c88c31
+    }
+
+    .hover-box {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 999;
+    }
+
+    .slide-container {
+      position: relative;
+    }
+
+    .slide-container:hover .hover-box {
+      display: block;
+    }
+
+    .prev-button,
+    .next-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 13px;
+      color: #000000;
+      cursor: pointer;
+      width: 20px; 
+      height: 20px; 
+      backdrop-filter: blur(5px);
+    }
+
+    .prev-button {
+      left: 170px;
+    }
+
+    .next-button {
+      right: 170px;
+    }
+
+    .prev-button:hover,
+    .next-button:hover {
+      backdrop-filter: blur(5px);
+      font-size: 13.5px;
+    }
+
+
+    /* NEST */
+    .larger-text {
+      font-size: 140px;
+    }
+
+    nav {
+      position: absolute;
+      top: -38%;
+      left: 29%;
+      text-align: center;
+      margin: 1em 0;
+      display: sflex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #322a20;
+      margin: 0.5em 0;
+      padding: 0.5em 1em;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a.admin-link {
+      font-size: 17px;
+      background-color: transparent;
+      border: none;
+      text-decoration: underline;;
+      transform: translateX(-50%);
+    }
+
+    nav a.admin-link:hover {
+      font-size: 19px;
+      font-family: 'Papyrus', sans-serif;
+      text-decoration: underline;
+    }
+
+    nav a:hover {
+      color: #3a3636;
+    }
+
+    nav a[href="/admin"] {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: -11em 0 0 0;
+    color: #333;
+    text-decoration: none;
+  }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    form label {
+      font-size: 2rem;
+      color: #333;
+      text-align: center;
+      font-family: 'Papyrus', sans-serif;
+    }
+
+    .inputbox label {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translate(-50%);
+      color: hsl(0, 4%, 27%);
+      font-size: 1rem;
+      pointer-events: none;
+      transition: all 0.5s ease-in-out;
+      font-family: 'Papyrus', sans-serif;
+    }
+
+    section {
+      position: absolute;
+      top: 28%;
+      left: 20%;
+      max-width: 400px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 3rem;
+      margin-bottom: 20px;
+    }
+
+    .fadeIn {
+      animation: fadeIn 2s ease-in-out; 
+    }
+
+    .fadeIn.active {
+      opacity: 1;
+    }
+
+
+    .admin-link {
+      font-size: 0.85rem;
+      position: absolute;
+      left: 28%;
+      margin-top: 900px;
+    }
+
+    form label {
+      font-size: 2rem;
+      color: #333;
+      text-align: center;
+    }
+
+    .inputbox {
+      position: relative;
+      margin: 0px 0;
+      max-width: 310px;
+      border-bottom: 2px solid #373636;
+    }
+
+    .inputbox label {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translate(-50%);
+      color: hsl(0, 4%, 27%);
+      font-size: 1rem;
+      pointer-events: none;
+      transition: all 0.5s ease-in-out;
+    }
+
+    input:focus~label,
+    input:valid~label {
+      top: -5px;
+    }
+
+    .inputbox input {
+      width: 100%;
+      height: 60px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      padding: 0 35px 0 5px;
+      color: #4d4949;
+    }
+
+    .inputbox ion-icon {
+      position: absolute;
+      right: 8px;
+      color: #383636;
+      font-size: 1.2rem;
+      top: 20px;
+    }
+
+    .forget {
+      margin: 35px 0;
+      font-size: 0.85rem;
+      color: #524b4b;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .forget label {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .forget label input {
+      margin-right: 3px;
+    }
+
+    .forget a {
+      color: #393535;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .forget a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      height: 40px;
+      border-radius: 40px;
+      background-color: rgb(255, 255, 255, 1);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.4s ease;
+      font-family: 'Papyrus', sans-serif;
+    }
+
+    button:hover {
+      font-size: 1.3rem;
+      background-color: rgba(118, 89, 66, 0.5);
+    }
+
+    .register {
+      font-size: 0.9rem;
+      color: rgb(80, 77, 77);
+      text-align: center;
+      margin: 25px 0 10px;
+    }
+
+    .register p a {
+      text-decoration: none;
+      color: rgb(46, 44, 44);
+      font-weight: 600;
+    }
+
+    .register p a:hover {
+      font-family: 'Papyrus', sans-serif;
+      font-size: 1.0rem;
+      text-decoration: underline;
+    }
+
+    .sen {
+      position: absolute;
+      top: 920%;
+      left: 20%;
+      text-align: center;
+      margin: 1em 0;
+      white-space: nowrap;
+    }
+
+    .sen a {
+      font-size: 0.01rem;
+      color: #333;
+      margin: 0.5em 0;
+      padding: 0.5em 1em;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background-color: #fff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <header>
+
+    <div class="slide-container">
+      <button class="prev-button" onclick="prevSlide()">←</button>
+      <a href="Audience.html" onclick="stopPropagation(event)">
+        <img class="slide" src="https://i.ibb.co/HGKSG58/2024-01-01-044606.png" alt="d2044121" border="0">
+      </a>
+      <button class="next-button" onclick="nextSlide()">→</button>
+    </div>
+
+    <div>
+      <p class="streaming">-------------------- Streaming Live! Click to enter auditorium --------------------</p>
+    </div>
+
+    <div class="slide-container">
+      <button class="prev-button" onclick="prevSlide()">←</button>
+        <img class="slide" src="https://i.ibb.co/hCwsbVJ/2024-01-01-044003.png" alt="d2044121" border="0">
+      <button class="next-button" onclick="nextSlide()">→</button>
+      <div class="hover-box">
+        直播已關閉~<br>請準時鎖定下星期二晚間 8:00， 敬請期待~~
+      </div>
+    </div>
+  
+    <div class="slide-container">
+      <button class="prev-button" onclick="prevSlide()">←</button>
+        <img class="slide" src="https://i.ibb.co/B3YTr92/2024-01-01-044301.png" alt="d2044121" border="0">
+      <button class="next-button" onclick="nextSlide()">→</button>
+      <div class="hover-box">
+        直播已關閉~<br>請準時鎖定下星期二晚間 8:00， 敬請期待~~
+      </div>
+    </div>
+
+    <div class="slide-container">
+      <img class="slide" src="https://i.ibb.co/B3YTr92/2024-01-01-044301.png" alt="c" border="0">
+      <div class="hover-box">
+        直播已關閉~<br>將不定時進行開播， 敬請期待~~
+      </div>
+    </div>
+    <h1>Welcome<br>to<br>the <span class="larger-text">NEST</span></h1>
+  </header>
+
+  <nav>
+    <div class="container">
+      <a href="Admin.html" class="admin-link fadeIn">Admin</a>
+    </div>
+  </nav>
+
+  <div class="background-section"></div>
+
+  <section class="container">
+    <!-- New login form code -->
+    <form action="login.php" method="POST" class="fadeIn">
+      <label for="">Login</label>
+      <div class="inputbox">
+        <ion-icon name="mail-outline"></ion-icon>
+        <input type="email" required>
+        <label for="">Email</label>
+      </div>
+      <div class="inputbox">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <input type="password" required>
+        <label for="">Password</label>
+      </div>
+      <div class="forget">
+        <label for=""><input type="checkbox">Remember Me</label>
+        <a href="#">Forget Password</a>
+      </div>
+      <form action="login.php" method="POST" class="fadeIn"></form>
+        <button type="submit">Log in</button>
+      <div class="register">
+        <p>Don't have an account <a href="register.html">Register</a></p>
+      </div>
+    </form>
+    <!-- End of login form code -->
+  </section>
+
+  
+  <script>
+    let buttonsDisplayed = false;
+  
+    function showButtons() {
+      if (!buttonsDisplayed) {
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        prevButton.style.display = 'inline-block';
+        prevButton.style.left = '170px';  // Adjust the left position as needed
+        nextButton.style.display = 'inline-block';
+        nextButton.style.right = '170px'; // Adjust the right position as needed
+        buttonsDisplayed = true;
+      }
+    }
+  
+    // JavaScript for image slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+  
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.style.display = 'block';
+        } else {
+          slide.style.display = 'none';
+        }
+      });
+    }
+  
+    function nextSlide() {
+      showButtons(); // Show buttons when next is clicked
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }
+  
+    function prevSlide() {
+      showButtons(); // Show buttons when prev is clicked
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(currentSlide);
+    }
+  
+    // Auto transition
+    setInterval(nextSlide, 5000);
+  
+    // Manual navigation
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') {
+        showButtons(); // Show buttons when right arrow key is pressed
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        showButtons(); // Show buttons when left arrow key is pressed
+        prevSlide();
+      }
+    });
+  
+    // Swipe functionality for touch devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+  
+    document.addEventListener('touchstart', function (e) {
+      touchStartX = e.touches[0].clientX;
+    });
+  
+    document.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].clientX;
+  
+      // Determine the swipe direction
+      const swipeThreshold = 50; // Adjust this threshold as needed
+      const swipeDistance = touchEndX - touchStartX;
+  
+      if (swipeDistance > swipeThreshold) {
+        showButtons(); // Show buttons when swiping right
+        prevSlide(); // Swipe right, go to the previous slide
+      } else if (swipeDistance < -swipeThreshold) {
+        showButtons(); // Show buttons when swiping left
+        nextSlide(); // Swipe left, go to the next slide
+      }
+    });
+  
+    // Initial display of the first slide
+    document.addEventListener('DOMContentLoaded', function () {
+      showSlide(currentSlide);
+    });
+  </script>
+  
+  
+
+</body>
+
+</html>
+
+
