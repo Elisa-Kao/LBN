@@ -376,19 +376,16 @@
       text-align: center;
       margin: 25px 0 10px;
     }
-
     .register p a {
       text-decoration: none;
       color: rgb(46, 44, 44);
       font-weight: 600;
     }
-
     .register p a:hover {
       font-family: 'Papyrus', sans-serif;
       font-size: 1.0rem;
       text-decoration: underline;
     }
-
     .sen {
       position: absolute;
       top: 920%;
@@ -397,7 +394,6 @@
       margin: 1em 0;
       white-space: nowrap;
     }
-
     .sen a {
       font-size: 0.01rem;
       color: #333;
@@ -408,14 +404,10 @@
       background-color: #fff;
       transition: background-color 0.3s, color 0.3s;
     }
-
-
   </style>
 </head>
-
 <body>
   <header>
-
     <div class="slide-container">
       <button class="prev-button" onclick="prevSlide()">←</button>
       <a href="Audience.html" onclick="stopPropagation(event)">
@@ -423,11 +415,9 @@
       </a>
       <button class="next-button" onclick="nextSlide()">→</button>
     </div>
-
     <div>
       <p class="streaming">-------------------- Streaming Live! Click to enter auditorium --------------------</p>
     </div>
-
     <div class="slide-container">
       <button class="prev-button" onclick="prevSlide()">←</button>
         <img class="slide" src="https://i.ibb.co/hCwsbVJ/2024-01-01-044003.png" alt="d2044121" border="0">
@@ -445,7 +435,6 @@
         直播已關閉~<br>請準時鎖定下星期二晚間 8:00， 敬請期待~~
       </div>
     </div>
-
     <div class="slide-container">
       <img class="slide" src="https://i.ibb.co/B3YTr92/2024-01-01-044301.png" alt="c" border="0">
       <div class="hover-box">
@@ -454,15 +443,12 @@
     </div>
     <h1>Welcome<br>to<br>the <span class="larger-text">NEST</span></h1>
   </header>
-
   <nav>
     <div class="container">
       <a href="Admin.html" class="admin-link fadeIn">Admin</a>
     </div>
   </nav>
-
   <div class="background-section"></div>
-
   <section class="container">
     <!-- New login form code -->
     <form id="loginForm">
@@ -483,14 +469,14 @@
           </label>
           <a href="#">Forget Password</a>
       </div>
-      <button type="submit" class="login-button"><a href="Player.html">Log in</a></button>
+      <button type="submit" onclick="window.location.href='Player.html';">Log in</button>
+
       <div class="register">
           <p>Don't have an account <a href="register.html">Register</a></p>
       </div>
   </form>
     <!-- End of login form code -->
   </section>
-
   
   <script>
     let buttonsDisplayed = false;
@@ -577,7 +563,6 @@
       showSlide(currentSlide);
     });
   </script>
-
 <!--<script>
     async function checkLogin(username, password) {
         try {
@@ -588,23 +573,18 @@
                 },
                 body: JSON.stringify({ username, password }),
             });
-
             const data = await response.json();
-
             return data.success;
         } catch (error) {
             console.error('Error during login:', error);
             return false;
         }
     }
-
     document.getElementById('loginForm').addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the form from submitting
         var email = document.getElementsByName('email')[0].value;
         var password = document.getElementsByName('password')[0].value;
-
         var loginSuccessful = await checkLogin(email, password);
-
         if (loginSuccessful) {
             alert('Login successful!');
             window.location.href = 'Player.html';
@@ -614,6 +594,13 @@
     });
   </script>-->
 
+  <script>
+      document.getElementById('loginForm').addEventListener('submit', function (event) {
+        // Your form submission logic here
+        // Prevent the default form submission behavior
+        event.preventDefault();
+    });
+</script>
 </body>
 
 </html>
