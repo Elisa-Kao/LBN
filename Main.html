@@ -454,28 +454,29 @@
 
   <section class="container">
     <!-- New login form code -->
-    <form action="login.php" method="POST" class="fadeIn">
-      <label for="">Login</label>
+    <form id="loginForm">
+      <label for="email">Login</label>
       <div class="inputbox">
-        <ion-icon name="mail-outline"></ion-icon>
-        <input type="email" required>
-        <label for="">Email</label>
+          <ion-icon name="mail-outline"></ion-icon>
+          <input type="email" name="email" required>
+          <label for="email">Email</label>
       </div>
       <div class="inputbox">
-        <ion-icon name="lock-closed-outline"></ion-icon>
-        <input type="password" required>
-        <label for="">Password</label>
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input type="password" name="password" required>
+          <label for="password">Password</label>
       </div>
       <div class="forget">
-        <label for=""><input type="checkbox">Remember Me</label>
-        <a href="#">Forget Password</a>
+          <label for="remember">
+              <input type="checkbox" id="remember" name="remember">Remember Me
+          </label>
+          <a href="#">Forget Password</a>
       </div>
-      <form action="login.php" method="POST" class="fadeIn"></form>
-        <button type="submit">Log in</button>
+      <button type="submit">Log in</button>
       <div class="register">
-        <p>Don't have an account <a href="register.html">Register</a></p>
+          <p>Don't have an account <a href="register.html">Register</a></p>
       </div>
-    </form>
+  </form>
     <!-- End of login form code -->
   </section>
 
@@ -565,7 +566,31 @@
       showSlide(currentSlide);
     });
   </script>
-  
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the form from submitting
+        // Replace the following lines with your actual login logic
+        var email = document.getElementsByName('email')[0].value;
+        var password = document.getElementsByName('password')[0].value;
+
+        // Add logic here to check the credentials using your fake Excel "database"
+        var loginSuccessful = checkLogin(email, password);
+
+        if (loginSuccessful) {
+            alert('Login successful!');
+            // Redirect to the desired page after successful login
+            window.location.href = 'Audience.html';
+        } else {
+            alert('Login failed! Invalid credentials.');
+        }
+    });
+
+    function checkLogin(email, password) {
+        // Add logic here to check the login credentials using your fake Excel "database"
+        // Return true if credentials are valid, otherwise return false
+        return false; // Replace with actual logic
+    }
+</script>
   
 
 </body>
