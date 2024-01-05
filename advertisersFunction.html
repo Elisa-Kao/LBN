@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Other head content -->
+
+  <style>
+
+body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://i.ibb.co/PYWkQFN/d8c1b9ff984395109f044c1c245f54bc.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      height: 100vh; 
+      font-size: 25px;
+    }
+
+    #buttonContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    div {
+          text-align: center;
+        }
+
+    h1 {
+      font-size: 80px;
+      font-weight: bold;
+      margin-top:180px;
+      color:rgb(134, 7, 72)
+    }
+
+    button {
+      font-size: 18px; 
+      padding: 10px 20px; /* Adjust the padding to increase button size */
+      margin: 10px;
+      align-self: center;
+    }
+
+    .dropdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      display: inline-block;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    #additionalLabel {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #gameForm,
+    #gameTypeDropdown,
+    #firstDropdown {
+      display: none;
+      margin-top: 20px;
+    }
+
+    input[type="text"] {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <h1>歡迎尊貴的甲方爸爸!</h1>
+  </div>
+
+
+  <div>
+    <p>感謝您選擇贊助聯盟</p>
+    <p>我們將致力為您準備最理想的服務</p>
+    <p>在競爭激烈的市場中脫穎而出，讓聯盟助你一臂之力！</p>
+    <p>讓我們一起共襄盛舉雙贏的未來!</p>
+  </div>
+
+  <!-- First dropdown -->
+  <div class="dropdown">
+    <button onclick="showFirstDropdown()">上傳新廣告</button>
+    <div id="firstDropdown" class="dropdown-content">
+      <a href="傳X對決.html" onclick="showGameForm()">傳X對決</a>
+      <a href="#" onclick="showPlayerRatingDropdown()">X神</a>
+      <a href="#" onclick="showManageUserDropdown()">賽X娘</a>
+      <a href="#" onclick="showManageUserDropdown()">LXL</a>
+      <!-- Add more actions as needed -->
+    </div>
+  </div>
+
+  <!-- Player rating dropdown -->
+  <div class="dropdown">
+    <button onclick="showPlayerRatingDropdown()">選擇廣告方案</button>
+    <div id="playerRatingDropdown" class="dropdown-content">
+      <a href="#" onclick="showAdditionalLabel('Sponsor Competition')">贊助競賽</a>
+      <a href="#" onclick="showAdditionalLabel('Sponsor League')">贊助聯盟</a>
+      <!-- Add more rating options as needed -->
+    </div>
+  </div>
+
+  <!-- Manage user dropdowns -->
+  <div class="dropdown">
+    <button onclick="showManageUserDropdown()">檢查應付餘額</button>
+  </div>
+  <div class="dropdown">
+    <button onclick="showManageUserDropdown()">取消廣告</button>
+  </div>
+
+  <!-- Display label -->
+  <div id="additionalLabel">你選擇的是: <span id="selectedOption"></span></div>
+
+  <!-- Game name input form -->
+  <form id="gameForm">
+    <label for="gameName">請輸入遊戲名稱:</label>
+    <input type="text" id="gameName" required>
+    <button type="button" onclick="showGameTypeDropdown()">Next</button>
+  </form>
+
+  <!-- Game type dropdown -->
+  <div id="gameTypeDropdown">
+    <!-- Add content for the game type dropdown here -->
+  </div>
+
+  <script>
+    function showFirstDropdown() {
+      var firstDropdown = document.getElementById("firstDropdown");
+      firstDropdown.style.display = 'block';
+    }
+
+    // Rest of your existing functions...
+  </script>
+</body>
+</html>

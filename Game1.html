@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>頭文字F</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://i.ibb.co/gvXvJcY/maxresdefault.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        #startText {
+            position: absolute;
+            top: 500px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 25px;
+            color: white;
+            text-align: center;
+            animation: blink 1s infinite;
+            opacity: 1;
+            font-family: fangsong;
+            letter-spacing: 4px;
+        }
+
+        .road-container {
+            position: relative;
+            width: 450px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .road {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            border: 2px solid red;
+            background-image: url('https://i.ibb.co/T8Bj18c/road-top-view-cartoon-asphalt-street-way-543062-3276.jpg');
+            background-size: cover;
+            background-repeat: repeat-y;
+            background-position: 50% 50%;
+            animation: roadmove 4s linear infinite;
+        }
+
+        .road-moving {
+            animation: roadmove 4s linear infinite;
+        }
+
+        @keyframes roadmove {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        #car {
+            width: 100px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+
+        #speedometer {
+            position: absolute;
+            top: 75px;
+            left: 44%;
+            font-family: fangsong;
+            letter-spacing: 8px;
+            color: white;
+            font-size: 55px;
+            z-index: 1; /* Ensure the speedometer is on top */
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 35px;
+            color: white;
+            text-align: center;
+            display: none;
+            font-family: fangsong;
+            letter-spacing: 4px;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            
+        }
+        .buttons button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .obstacle {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            top: -50px; /* Set the initial position above the road */
+            left: 50%;
+            transform: translateX(-50%);
+            background-image: url('https://i.ibb.co/FKssH1Q/php-HF2omw-Photo-Room-png-Photo-Room.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="road-container">
+        <div class="road" id="road"></div>
+        <div class="obstacle" id="obstacle"></div>
+        <div id="startText"><span>Click to start</span></div>
+    </div>
+
+    <img src="https://i.ibb.co/wKKmP0
+X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
+    <div id="speedometer">
+        <span id="speed">0</span> km
+    </div>
+
+    <div id="gameOver">
+        Game Over<br>
+        Result: <span id="result"></span> km
+    </div>
+
+    <div class="buttons" id="buttons">
+        <button onclick="playAgain()">Play Again</button>
+        <button onclick="exitGame()">Exit Game</button>
+    </div>
+
+    <script>
+        var car = document.getElementById("car");
+        var road = document.getElementById("road");
+        var startText = document.getElementById("startText");
+        var speedometer = document.getElementById("speed");
+        var gameOverMessage = document.getElementById("gameOver");
+        var buttonsContainer = document.getElementById("buttons");
+        var obstacle = document.getElementById("obstacle");
+
+        function startCar() {
+            car.onclick = null;
+            road.classList.add("road-moving");
+            startText.style.display = "none";
+
+            var speedValue = 0;
+            var speedIncrement = 0.0001;
+            var acceleration = 0.00002; // You can adjust the acceleration factor
+            var obstaclePosition = 0;
+
+            function updateSpeed() {
+                speedIncrement += acceleration; // Increase the speed increment
+                speedValue += speedIncrement;
+                speedometer.textContent = Math.round(speedValue); // Round for better readability
+
+                // Update background position based on speed
+                var backgroundPosition = speedValue * 2; // Adjust the sign to make it move in the opposite direction
+                road.style.transform = "translateY(" + -backgroundPosition + "px)";
+
+  
+
+                // Check for collision with the obstacle
+                var carRect = car.getBoundingClientRect();
+                var obstacleRect = obstacle.getBoundingClientRect();
+                var roadRect = road.getBoundingClientRect();
+
+                // Check if the car is outside the road boundaries
+                if (
+                    carRect.left < roadRect.left ||
+                    carRect.right > roadRect.right ||
+                    carRect.top < roadRect.top ||
+                    carRect.bottom > roadRect.bottom
+                ) {
+                    // Game over
+                    road.classList.remove("road-moving");
+                    gameOverMessage.style.display = "block";
+                    document.onmousemove = null;
+                    car.style.cursor = "default";
+                    buttonsContainer.style.display = "block";
+                    gameOverMessage.textContent = "Game Over\nResult: " + Math.round(speedValue) + " km";
+                } else if (
+                    carRect.left < obstacleRect.right &&
+                    carRect.right > obstacleRect.left &&
+                    carRect.top < obstacleRect.bottom &&
+                    carRect.bottom > obstacleRect.top
+                ) {
+                    // Game over due to collision with the obstacle
+                    road.classList.remove("road-moving");
+                    gameOverMessage.style.display = "block";
+                    document.onmousemove = null;
+                    car.style.cursor = "default";
+                    buttonsContainer.style.display = "block";
+                    gameOverMessage.textContent = "Game Over\nResult: " + Math.round(speedValue) + " km";
+                } else {
+                    requestAnimationFrame(updateSpeed);
+                }
+            }
+
+            function updateObstacle() {
+                obstaclePosition += speedValue * 0.08; // Adjust the factor for obstacle speed
+
+                // Check if the obstacle is out of the screen
+                if (obstaclePosition > window.innerHeight) {
+                    obstaclePosition = -50; // Reset the obstacle position above the road
+                    // Set a random left position for the obstacle
+                    obstacle.style.left = Math.floor(Math.random() * (road.offsetWidth - obstacle.offsetWidth)) + "px";
+                }
+
+    obstacle.style.top = obstaclePosition + "px";
+
+    requestAnimationFrame(updateObstacle);
+}
+
+            updateSpeed();
+            updateObstacle();
+
+            document.onmousemove = function (e) {
+                var x = e.clientX;
+                var y = e.clientY;
+
+                car.style.left = x - car.offsetWidth / 2 + "px";
+                car.style.top = y - car.offsetHeight / 2 + "px";
+            };
+        }
+
+        function playAgain() {
+            location.reload();
+        }
+
+        function exitGame() {
+            window.location.href = "Player.html";
+        }
+    </script>
+    
+</body>
+
+</html>

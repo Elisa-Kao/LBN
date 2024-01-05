@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor Our League</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 100px;
+            font-size: 18px;
+            text-align: center;
+            background-image: url('https://i.ibb.co/R2yRJYM/istockphoto-1497861066-612x612.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        section {
+      position:absolute;
+      left:33%;
+      top:0%;
+      max-width: 400px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 3rem;
+      margin-bottom: 20px;
+    }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 80px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 16px;
+            margin-top:16px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        select {
+            font-size: 24px;
+            height: 40px;
+        }
+
+        button {
+            background-color: #d61212;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+        }
+
+        .policy {
+            margin-top: 10px; 
+        }
+
+        .policy a {
+            color: #623792;
+        }
+
+
+        .error-message {
+            color: #e31d1d;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="container">
+    <h1>Advertise with Us!</h1>
+    <p>您選擇的遊戲：傳X對決</p>
+    <p>您的廣告將於直播時進行投注</p>
+
+    <form id="sponsorForm">
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" name="companyName" required>
+
+        <label for="investAmount">Select Investment Amount:</label>
+        <select id="investAmount" name="investAmount" required>
+            <option value="1000000">10 minutes - $1,000,000</option>
+            <option value="1999999">20 minutes - $1,999,999</option>
+            <option value="999999999999999">1 day - $999,999,999,999,999</option>
+        </select>
+
+        <label for="advertisementURL">Advertisement Image URL:</label>
+        <img id="adImage" class="ad" src="https://i.ibb.co/T05tJQ9/IMG-3947.jpg" alt="Ad 1">
+
+
+        <div class="policy">
+            <p>I agree to the <a href="#">Agree Policy</a></p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <button type="button" onclick="validateForm()">Invest Now</button>
+    </form>
+</section>
+<script>
+    function validateForm() {
+        var companyName = document.getElementById("companyName").value;
+        var investAmount = document.getElementById("investAmount").value;
+        var advertisementURL = document.getElementById("advertisementURL").value;
+        var adImage = document.getElementById("adImage");
+
+        if (companyName === "" || investAmount === "" || advertisementURL === "") {
+            document.getElementById("errorMessage").innerText = "輸入資訊未完成，請輸入完整資訊";
+        } else {
+            // Update the advertising image
+            adImage.src = advertisementURL;
+            
+            // You can add your logic here to handle the form submission, e.g., sending data to a server.
+            alert("Thank you for your investment!");
+
+            // Reset the error message
+            document.getElementById("errorMessage").innerText = "";
+        }
+    }
+</script>
+</body>
+</html>

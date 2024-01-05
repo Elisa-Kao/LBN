@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+
+    <style>
+        /* Animation properties */
+.star {
+  animation: star 10s ease-out infinite;
+}
+.wars {
+  animation: wars 10s ease-out infinite;
+}
+.byline span {
+  animation: spin-letters 10s linear infinite;
+}
+.byline {
+  animation: move-byline 10s linear infinite;
+}
+
+
+
+/* Make the 3D work on the container */
+.starwars-demo {
+  perspective: 800px;
+  transform-style: preserve3d;
+}
+
+/* General styles and layout */
+body {
+  margin-top: 400px;
+  background: url('https://i.ibb.co/4VMLb2L/aa.jpg') center/cover no-repeat;
+}
+.starwars-demo {
+  height: 17em;
+  left: 50%;
+  position: absolute;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  width: 34em;
+}
+
+.byline span {
+  display: inline-block;
+}
+
+img {
+  width: 100%;
+}
+
+.star, .wars, .byline {
+  position: absolute;
+}
+
+.star {
+  top: -0.75em;
+}
+
+.wars {
+  bottom: -0.5em;
+}
+
+.byline {
+  color: #fff;
+  font-family: "ITC Serif Gothic", Lato;
+  font-size: 2.25em;
+  left: -2em;
+  letter-spacing: 0.4em;
+  right: -2em;
+  text-align: center;
+  text-transform: uppercase;
+  top: 29%;
+}
+
+/*** Media queries for adjusting to different screen sizes ***/
+
+@media only screen and (max-width: 600px) {
+  .starwars-demo {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .starwars-demo {
+    font-size: 7px;
+  }
+}
+
+/*---------------------------------------*/
+        .intro-text {
+            display: flex;
+            font-family: 'Papyrus',serif;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #003;
+            color: #fff;
+            opacity: 0;
+            animation: fadeInIntro 1s forwards;
+            padding: 0 20px; /* Add left and right padding */
+            flex-wrap: wrap; /* Allow text to wrap to the next row */
+        }
+
+        .intro-text p {
+            font-size: 70px;
+            text-align: center;
+            margin-bottom: 20px 0;
+        }
+
+        @keyframes fadeInIntro {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .wrap {
+            width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: auto;
+            opacity: 0;
+            animation: fadeInItems 1s forwards;
+        }
+
+        @keyframes fadeInItems {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .text-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .item {
+            width: 368px;
+            margin: 15px;
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            transform: translateY(0 px);
+            transition: .5s;
+            opacity: 0;
+            animation: fadeInItem 1s forwards;
+        }
+
+        @keyframes fadeInItem {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .i {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        .item img {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        .item h2 {
+            border-bottom: 1px solid #888;
+            padding-bottom: .3em;
+            margin-bottom: .4em;
+            font-weight: 900;
+            transition: .35s;
+        }
+
+        .item p {
+            line-height: 1.6;
+            font-weight: 300;
+            transition: .35s;
+        }
+
+        .item .txt {
+            padding: 20px;
+            position: relative;
+        }
+
+        .item .txt:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 0;
+            top: 0;
+            border-top: 50px solid transparent;
+            border-left: 184px solid #fff;
+            border-right: 184px solid #fff;
+            transform: translateY(-100%);
+        }
+
+        .item:hover {
+            transform: translateY(-100px);
+        }
+
+        .item:nth-of-type(1):hover,
+        .item:nth-of-type(3):hover {
+            transform: translateY(-100px);
+            background: linear-gradient(180deg, #FEB85D 0%, #ef7d57 100%);
+        }
+
+        .item:nth-of-type(1):hover .txt,
+        .item:nth-of-type(3):hover .txt {
+            background: linear-gradient(180deg, #FEB85D 0%, #fb9759 100%);
+        }
+
+        .item:nth-of-type(1):hover .txt:before,
+        .item:nth-of-type(3):hover .txt:before {
+            border-left: 184px solid #FEB85D;
+            border-right: 184px solid #FEB85D;
+        }
+
+        .item:nth-of-type(1):hover h2,
+        .item:nth-of-type(3):hover h2 {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        .item:nth-of-type(1):hover p,
+        .item:nth-of-type(3):hover p {
+            color: #fff;
+        }
+
+        .item:hover .txt {
+            background-image: linear-gradient(0deg, #FB8076, #FEB85D);
+        }
+
+
+        .item:hover .txt:before {
+            border-left: 184px solid #FEB85D;
+            border-right: 184px solid #FEB85D;
+        }
+
+
+
+        .item:hover h2 {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        .item:hover p {
+            color: #fff;
+        }
+
+        /* New styles for fading in text */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .warriors{
+            font-family: 'Papyrus', sans-serif;
+            font-size: 2.5em;
+            line-height: 1.5;
+            margin-top: 5px; 
+            margin-left: -37%;
+            margin-right: 0px;
+            position: absolute;
+            top: 10px; 
+            left: 50%;
+            transform: translateX(-50%);
+            color:#bb2315
+        }        
+
+        .choose {
+            font-family: 'Papyrus', sans-serif;
+            font-size: 0.8em;
+            margin-left: 20px; /* Adjust the margin as needed */
+            line-height: 1.5;
+            color: #bb2315;
+            margin-top: 20px;
+        }
+
+        .your {
+            font-family: 'Papyrus', sans-serif;
+            font-size: 1.3em;
+            margin-left: 75px;
+            line-height: 1.5;
+            color:#bb2315
+        }
+
+        .battlefield {
+            font-size: 1.1em;
+            font-family: 'Papyrus', sans-serif;
+            color:#bb2315
+        }
+
+        .battlefield.a {
+            margin-left: 36px;
+        }
+
+        .battlefield.t1 {
+            margin-left: 54px;
+        }
+
+        .battlefield.t2 {
+            margin-left: 72px;
+        }
+
+        .battlefield.L {
+            margin-left: 90px;
+        }
+
+        .battlefield.EFIELD {
+            letter-spacing: 18px;
+            margin-left: 108px;
+        }
+
+        .journey-text {
+        font-size: 1em; 
+        line-height: 1.5;
+        margin-top: 200px;
+        color:#bb2315
+
+        }
+
+        .destiny-text {
+            font-size: 2.5em; 
+            line-height: 1.2;
+            
+        }
+
+        .league-item {
+        margin: 15px; 
+        position: relative;
+    }
+        .league-item img {
+                width: 100%; 
+                border: 1px solid #ccc; 
+            }
+
+            .display-box {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(0, 0, 0, 0.8);
+                color: #fff;
+                padding: 10px;
+                display: none;
+            }
+
+            .league-item p {
+                margin: 0;
+                color: #fff;
+            }
+
+            .league-item:hover .display-box {
+                display: block;
+            }
+
+
+            .words {
+                font-size: 2em;
+                font-weight: bold;
+                color: #fff;
+                margin-top: 20px;
+            }
+
+            .words2 {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #fff;
+                margin-top: 20px;
+                font-family: 'Papyrus', sans-serif;
+
+            }
+
+            .description{
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #030303;
+                font-family: 'Papyrus', sans-serif;
+            }
+
+            @keyframes fadeInOut {
+                0% {
+                    opacity: 0;
+                    transform: translateY(0);
+                }
+                25% {
+                    opacity: 10;
+                    transform: translateY(-20px);
+                }
+                75% {
+                    opacity: 10;
+                    transform: translateY(-20px);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(0);
+                }
+            }
+
+            .warriors {
+                animation: fadeInOut 20s forwards;
+            }
+
+            .choose-game {
+                opacity: 0;
+                animation: fadeIn 1s forwards 20s;
+                font-family: 'Papyrus', sans-serif;
+                font-size: 2.5em;
+                line-height: 1.5;
+                margin-top: 10%; 
+                margin-left: 0%;
+                margin-right: 0px;
+                position: absolute;
+                top: 10px; 
+                left: 50%;
+                transform: translateX(-50%);
+                color:#bb2315
+            }
+
+
+    </style>
+
+    <script>
+        var byline = document.getElementById('byline');   // Find the H2
+        bylineText = byline.innerHTML;                    // Get the content of the H2
+        bylineArr = bylineText.split('');                 // Split content into array
+        byline.innerHTML = '';                            // Empty current content
+
+        var span;         // Create variables to create elements
+        var letter;
+
+        for(i=0;i<bylineArr.length;i++){                  // Loop for every letter
+        span = document.createElement("span");          // Create a <span> element
+        letter = document.createTextNode(bylineArr[i]); // Create the letter
+        if(bylineArr[i] == ' ') {                       // If the letter is a space...
+            byline.appendChild(letter);         // ...Add the space without a span
+        } else {
+            span.appendChild(letter);           // Add the letter to the span
+            byline.appendChild(span);           // Add the span to the h2
+        }
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var items = document.querySelectorAll('.item');
+
+            items.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    var link = item.getAttribute('data-link');
+                    if (link) {
+                        window.location.href = link;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    
+
+    <div class="wrap">
+        <!-- First row -->
+        <div class="row">
+            <div class="item" data-link="Game1.html">
+                <img src="https://i.ibb.co/MNZdckF/20833a91c96e8af78274de9ce61bm825.jpg">
+                <div class="description">
+                    <h2>頭文字F</h2>
+                    <p>Deja vu</p>
+                    <p>I've just been in this place before</p>
+                    <p>Higher on the street</p>
+                    <p>And I know it's my time to go</p>
+                </div>
+            </div>
+
+
+            <div class="i fade-in">
+                <h2 class="warriors">
+                    <span class="larger-W">W</span>ithin the whispers of choice lies the symphony of your own <span class="larger-W">FATE</span>.
+                </h2>
+            </div>
+
+            <span class="choose-game">Choose your Game</span>
+
+            <style>
+                .larger-W {
+                    font-size: 1.5em;
+                }
+            </style>
+
+            <div class="item">
+                <img src="https://i.ibb.co/sb1kLx9/HB8oSV0O.jpg">
+                <div class="description">
+                    <h2>DICE</h2>
+                    <p>6...</p>
+                    <p>5...</p>
+                    <p>4...</p>
+                    <p>3...</p>
+                    <p>2...</p>
+                    <p>Hold your breath, for there are no chances left...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second row -->
+        <div class="row">
+            <!-- Items 3, 4, and 5 in the second row -->
+            <div class="item">
+                <img src="https://i.ibb.co/pfQS5XX/pokemon-go.png" alt="pokemon-go">
+                <div class="description">
+                    <h2>The Maze</h2>
+                    <p>Go on an adventure in a peculiar maze</p>
+                    <p>You may found some bizzarre creature within!</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://i.ibb.co/PWJvdGP/oon-Yk-Ag8v-DAed-A0l-Ae-Aj-QEIrbk-BA5-CAC3nkp-F8-tplv-pk90l89vgd-crop-center-1280-719.jpg">
+                <div class="description">
+                    <h2>1/2</h2>
+                    <p>/ This is a game where you cut everything in half /</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="https://i.ibb.co/Fq29Bjm/9248486588446.jpg">
+                <div class="description">
+                    <h2>It's your birthday and you have no friends</h2>
+                    <p>Come in to celebrate!</p>
+                    <p>Of course it doesn't show how pathtic you are!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="text-container">
+                <div class="i fade-in">
+                    <h2 class="choose journey-text">while the endless path of the journey unfolds</h2>
+                    <h2 class="choose">the predestined ones await you</h2>
+                    <h2 class="choose destiny-text">to write your own Unprecedented Destiny</h2>
+                </div>
+            </div>
+        </div>
+        
+
+    <!-- Fourth row -->
+    <div class="row">
+        <!-- First picture and text -->
+        <div class="league-item">
+            <div class="image-container">
+                <!-- Image 6 -->
+                <img src="https://i.ibb.co/JcYjd02/vT1pjTI.jpg" alt="vT1pjTI" border="0">
+            </div>
+            <div class="display-box">
+                <p>No League has been created yet.</p>
+            </div>
+            <p class="words">Join League</p>
+            <p class="words2">Join the existing league and start your journey.</p>
+        </div>
+
+        <!-- Second picture and text -->
+        <div class="league-item">
+            <div class="image-container">
+                <!-- Image 7 -->
+                <img src="https://i.ibb.co/8Xfrr6Y/maxresdefault.jpg" alt="maxresdefault" border="0">
+            </div>
+            <div class="display-box">
+                <p>Buy Premium to create League.</p>
+            </div>
+
+            <p class="words">Create League</p>
+            <p class="words2">Create your own league and become a leader.</p>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
