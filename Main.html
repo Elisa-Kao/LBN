@@ -354,9 +354,20 @@
       font-family: 'Papyrus', sans-serif;
     }
 
+    button a{
+      text-decoration: none;
+      color: #393535;
+    }
+
+
     button:hover {
       font-size: 1.3rem;
       background-color: rgba(118, 89, 66, 0.5);
+    }
+
+    button:hover a {
+      text-decoration: none;
+      color: #393535;
     }
 
     .register {
@@ -472,7 +483,7 @@
           </label>
           <a href="#">Forget Password</a>
       </div>
-      <button type="submit"><a href="Player.html">Log in</a></button>
+      <button type="submit" class="login-button"><a href="Player.html">Log in</a></button>
       <div class="register">
           <p>Don't have an account <a href="register.html">Register</a></p>
       </div>
@@ -606,5 +617,4 @@
 </body>
 
 </html>
-
 
