@@ -1,17 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Registration</title>
     <style>
-        /* Your existing styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/originals/36/4b/47/364b474b09b192c741e781e19e802561.gif');
+            background-position: center;
+            background-repeat: repeat;
+            font-family: 'Papyrus', sans-serif;
+        }
+
+        h2{
+            margin-top:10px;
+            font-size:30px;
+        }
+
+        .content {
+            width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px;
+            color: #000000;
+        }
+
+        section {
+            position: absolute;
+            left: 35.5%;
+            top: 18%;
+            width: 350px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(11px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 3rem;
+            margin-bottom: 20px;
+        }
+
+        .transparent-input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 8px;
+            background-color: transparent; 
+            border: 1px solid #000000;
+            color: #000000;
+        }
+
+        button {
+            font-family: 'Papyrus', sans-serif;
+            font-size: 18px;
+            background: transparent;
+            color: #0f0f0f;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
     </style>
 </head>
-
 <body>
+
     <section class="container">
         <!-- New registration form code -->
         <form id="registrationForm" onsubmit="return registerUser();">
@@ -31,7 +95,7 @@
         <!-- End of registration form code -->
     </section>
 
-    <script>
+       <script>
         function registerUser() {
             // Replace the following lines with your actual registration logic
             // For demonstration purposes, we'll assume registration is successful
@@ -50,6 +114,6 @@
             return false;
         }
     </script>
-</body>
 
+</body>
 </html>
