@@ -8,7 +8,7 @@
     <style>
         body {
             overflow: hidden;
-            background-image: url("https://i.ibb.co/zmFS6Z5/stream-overlay-template-17-1.jpg");
+            background-image: url("https://i.ibb.co/rGb1jWH/S-4399214.jpg");
             background-size: cover;
             background-position: top;
             height: 0vh;
@@ -24,7 +24,8 @@
             overflow: hidden;
         }
 
-        #welcomeImage {
+        #welcomeImage,
+        #welcomeVideo {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -40,10 +41,10 @@
 
         .ad {
             position: absolute;
-            left: 74.7%;
-            top: 6%;
-            width: 23.1%;
-            height: 27%;
+            left: 75.5%;
+            top: 67%;
+            width: 23.6%;
+            height: 29%;
             transform-origin: top left;
         }
 
@@ -63,33 +64,14 @@
         }
 
         .top_donation {
-            left: 56%;
-            background: linear-gradient(45deg, #ff0000, #ff9900, #ffeb00, #33cc33, #3399ff, #cc66ff);
+            top: -1%;
+            left: 5%;
+            background: #fff;
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             display: inline-block;
-            font-size: 20px;
-        }
-
-        .new_follower {
-            left: 32%;
-            background: linear-gradient(45deg, #ff0000, #ff9900, #ffeb00, #33cc33, #3399ff, #cc66ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            display: inline-block;
-            font-size: 20px;
-        }
-
-        .new_donation {
-            left: 8%;
-            background: linear-gradient(45deg, #ff0000, #ff9900, #ffeb00, #33cc33, #3399ff, #cc66ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            display: inline-block;
-            font-size: 20px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -97,47 +79,45 @@
 <body>
 
     <div id="welcomeImageContainer">
-        <img id="welcomeImage" src="https://i.ibb.co/dKVz6cn/1-yct-DEp8r-Ykyl5zqmi-WBXAA.jpg" alt="Welcome Image">
+        <!-- Video element added -->
+        <video id="welcomeVideo" autoplay loop muted>
+            <source src="9ecf44b2-08af-42f9-bce8-198e4b6e3911.mp4" type="video/mp4">
+
+
     </div>
+
+    <!-- Rest of your existing HTML content -->
 
     <div id="advertisingSection">
-        <img class="ad" src="https://i.ibb.co/T05tJQ9/IMG-3947.jpg" alt="Ad 1">
+        <img class="ad" src="https://i.ibb.co/fpMrBqR/brand-logo-featured-image-1492.jpg" alt="Ad 1">
     </div>
 
     <div>
-        <p class="top_donation">感謝榜一大哥<span style="color: red;">666</span> !!</p>
+        <p class="top_donation">感謝榜一大哥<span style="color: rgb(0, 12, 249);">666</span> !!</p>
     </div>
-
-    <div>
-        <p class="new_follower">感謝榜一大哥<span style="color: red;">666</span> !!</p>
-    </div>
-
-    <div>
-        <p class="new_donation">感謝榜一大哥<span style="color: red;">666</span> !!</p>
-    </div>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var image = document.getElementById("welcomeImage");
+            var video = document.getElementById("welcomeVideo");
             var fadeInOutInterval;
             var blinkCount = 0;
             var totalBlinks = 3;
 
             // Show the image
-            image.style.opacity = "0";
+            // image.style.opacity = "0";
 
             // Function to fade in and out
             function fadeInOut() {
-                image.style.opacity = (image.style.opacity === "0") ? "1" : "0";
+                video.style.opacity = (video.style.opacity === "0") ? "1" : "0";
 
                 blinkCount++;
                 if (blinkCount === totalBlinks * 2) {
                     // Stop the fading after the specified number of blinks
                     clearInterval(fadeInOutInterval);
-                    // Hide the image after fading
+                    // Hide the video after fading
                     setTimeout(function () {
-                        image.style.opacity = "0";
+                        video.style.opacity = "0";
                     }, 2000); // Delay before fading out 
                 }
             }
