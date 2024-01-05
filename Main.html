@@ -566,30 +566,40 @@
       showSlide(currentSlide);
     });
   </script>
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
+<script>
+    async function checkLogin(username, password) {
+        try {
+            const response = await fetch('/check_login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+
+            return data.success;
+        } catch (error) {
+            console.error('Error during login:', error);
+            return false;
+        }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent the form from submitting
-        // Replace the following lines with your actual login logic
         var email = document.getElementsByName('email')[0].value;
         var password = document.getElementsByName('password')[0].value;
 
-        // Add logic here to check the credentials using your fake Excel "database"
-        var loginSuccessful = checkLogin(email, password);
+        var loginSuccessful = await checkLogin(email, password);
 
         if (loginSuccessful) {
             alert('Login successful!');
-            // Redirect to the desired page after successful login
-            window.location.href = 'Audience.html';
+            window.location.href = 'Player.html';
         } else {
             alert('Login failed! Invalid credentials.');
         }
     });
-
-    function checkLogin(email, password) {
-        // Add logic here to check the login credentials using your fake Excel "database"
-        // Return true if credentials are valid, otherwise return false
-        return false; // Replace with actual logic
-    }
 </script>
   
 
