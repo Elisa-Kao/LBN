@@ -137,6 +137,37 @@
             background-repeat: no-repeat; 
         }
 
+        .ad-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 2; /* Ensure the ad is on top of other elements */
+        }
+
+        .ad {
+            width: 550px;
+            height: 550px;            
+            background-image: url('https://i.ibb.co/c13pLgp/ajax-Image-Reader.png'); 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #ffffff; /* Set border color for the ad */
+        }
+
+        .ad button {
+            position:absolute;
+            top:3%;
+            right:2%;
+            margin-top: 0px; 
+            margin-right:5px;
+            padding:3px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -163,6 +194,13 @@ X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
         <button onclick="exitGame()">Exit Game</button>
     </div>
 
+    <div id="adContainer" class="ad-container">
+        <div id="ad" class="ad">
+            <!-- Add your ad content here -->
+            <button onclick="closeAd()">Close Ad</button>
+        </div>
+    </div>
+
     <script>
         var car = document.getElementById("car");
         var road = document.getElementById("road");
@@ -171,6 +209,7 @@ X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
         var gameOverMessage = document.getElementById("gameOver");
         var buttonsContainer = document.getElementById("buttons");
         var obstacle = document.getElementById("obstacle");
+        var adContainer = document.getElementById("adContainer");
 
         function startCar() {
             car.onclick = null;
@@ -212,6 +251,7 @@ X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
                     car.style.cursor = "default";
                     buttonsContainer.style.display = "block";
                     gameOverMessage.textContent = "Game Over\nResult: " + Math.round(speedValue) + " km";
+                    adContainer.style.display = "block";
                 } else if (
                     carRect.left < obstacleRect.right &&
                     carRect.right > obstacleRect.left &&
@@ -225,6 +265,7 @@ X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
                     car.style.cursor = "default";
                     buttonsContainer.style.display = "block";
                     gameOverMessage.textContent = "Game Over\nResult: " + Math.round(speedValue) + " km";
+                    adContainer.style.display = "block";
                 } else {
                     requestAnimationFrame(updateSpeed);
                 }
@@ -238,6 +279,10 @@ X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
                     obstaclePosition = -50; // Reset the obstacle position above the road
                     // Set a random left position for the obstacle
                     obstacle.style.left = Math.floor(Math.random() * (road.offsetWidth - obstacle.offsetWidth)) + "px";
+                }
+
+                function closeAd() {
+                    adContainer.style.display = "none";
                 }
 
     obstacle.style.top = obstaclePosition + "px";
@@ -257,6 +302,8 @@ X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
             };
         }
 
+        
+
         function playAgain() {
             location.reload();
         }
@@ -264,6 +311,10 @@ X/images-1-Photo-Room-png-Photo-Room.png" id="car" onclick="startCar()">
         function exitGame() {
             window.location.href = "Player.html";
         }
+
+        function closeAd() {
+        adContainer.style.display = "none";
+    }
     </script>
     
 </body>
