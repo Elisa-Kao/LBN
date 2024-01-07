@@ -443,44 +443,103 @@ img {
                 color:#bb2315
             }
 
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.4);
+                font-size:28px;
+                color:#fff;
+
+            }
+
+            .modal-content {
+                background: rgba(255, 255, 255, 3) url('https://i.ibb.co/gMhZzkj/special08.jpg') center/cover no-repeat;
+                margin: 5% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 60%; /* Adjust the width as needed */
+                border-radius: 10px; /* Add border-radius for rounded corners */
+                box-shadow: 0 4px 08px rgba(0, 0, 0, 0.1); /* Add box-shadow for depth */
+                backdrop-filter: blur(100px);
+
+            }
+
+            .close {
+                color: #c8aeae;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+            }
+
+            #leagueOptions div {
+                padding: 10px;
+                border-bottom: 1px solid #ddd; /* Add a border between options */
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            #leagueOptions div:last-child {
+                border-bottom: none; /* Remove border for the last option */
+            }
+
+            #leagueOptions div:hover {
+                background-color: #d38585; /* Change background color on hover */
+            }
+
+
 
     </style>
 
-    <script>
-        var byline = document.getElementById('byline');   // Find the H2
-        bylineText = byline.innerHTML;                    // Get the content of the H2
-        bylineArr = bylineText.split('');                 // Split content into array
-        byline.innerHTML = '';                            // Empty current content
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var leagueItems = document.querySelectorAll('.league-item');
+        var modal = document.getElementById('leagueModal');
+        var modalContent = document.getElementById('modalContent');
+        var closeBtn = document.getElementById('closeModal');
 
-        var span;         // Create variables to create elements
-        var letter;
+        leagueItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                var leagueName = item.getAttribute('data-league-name');
+                var level = item.getAttribute('data-level');
+                var currentMembers = item.getAttribute('data-members');
+                var maxMembers = item.getAttribute('data-max-members');
 
-        for(i=0;i<bylineArr.length;i++){                  // Loop for every letter
-        span = document.createElement("span");          // Create a <span> element
-        letter = document.createTextNode(bylineArr[i]); // Create the letter
-        if(bylineArr[i] == ' ') {                       // If the letter is a space...
-            byline.appendChild(letter);         // ...Add the space without a span
-        } else {
-            span.appendChild(letter);           // Add the letter to the span
-            byline.appendChild(span);           // Add the span to the h2
-        }
-        }
-    </script>
+                modalContent.innerHTML = `
+                    <h2>${leagueName}</h2>
+                    <p>Level: ${level}</p>
+                    <p>Members: ${currentMembers}/${maxMembers}</p>
+                    <p>Welcome to ${leagueName}!</p>
+                `;
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var items = document.querySelectorAll('.item');
-
-            items.forEach(function (item) {
-                item.addEventListener('click', function () {
-                    var link = item.getAttribute('data-link');
-                    if (link) {
-                        window.location.href = link;
-                    }
-                });
+                modal.style.display = 'block';
             });
         });
-    </script>
+
+        closeBtn.onclick = function () {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    });
+</script>
+
 </head>
 
 <body>
@@ -578,9 +637,6 @@ img {
                 <!-- Image 6 -->
                 <img src="https://i.ibb.co/JcYjd02/vT1pjTI.jpg" alt="vT1pjTI" border="0">
             </div>
-            <div class="display-box">
-                <p>No League has been created yet.</p>
-            </div>
             <p class="words">Join League</p>
             <p class="words2">Join the existing league and start your journey.</p>
         </div>
@@ -601,6 +657,136 @@ img {
     </div>
 
 </div>
+
+<div id="leagueModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="leagueOptions"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var leagueItems = document.querySelectorAll('.league-item');
+      var leagueModal = document.getElementById('leagueModal');
+      var leagueOptions = document.getElementById('leagueOptions');
+  
+      leagueItems.forEach(function (item, index) {
+        item.addEventListener('click', function () {
+          // Simulate league options (you can replace this with actual data)
+         
+          var leagues = [
+            { name: '卍煞氣a軟工流青王霸龍卍', level: 50000, members: 187, limit: 300 },
+            { name: '櫻櫻櫻魂真理の使徒', level: 7777, members: 49, limit: 100 },
+            { name: '黯夜黑龍', level: 360, members: 67, limit: 80 },
+            { name: '燕巢小分隊', level: 66, members: 29, limit: 50 },
+            { name: '甲yyds', level: 11, members: 11, limit: 20 },
+            { name: 'God灬原諒我這一生不羈放縱', level: 2, members: 6, limit: 10 },
+            // Add more league options as needed
+        ];
+
+        // Find the maximum length of the 'name' and 'level' properties
+        const maxNameLength = leagues.reduce((max, league) => Math.max(max, league.name.length), 0);
+        const maxLevelLength = leagues.reduce((max, league) => Math.max(max, league.level.toString().length), 0);
+
+        // Adjust spaces to align strings at the top and bottom
+        leagues.forEach((league) => {
+            const spacesName = ' '.repeat(maxNameLength - league.name.length);
+            const spacesLevel = ' '.repeat(maxLevelLength - league.level.toString().length);
+            league.name = `${league.name}${spacesName}`;
+            league.level = `${spacesLevel}${league.level}`;
+        });
+
+        // Output the aligned leagues
+        console.log(leagues);
+
+
+
+  
+          // Create league options in the modal
+          leagueOptions.innerHTML = '';
+          leagues.forEach(function (league) {
+            var option = document.createElement('div');
+            option.innerHTML = `${league.name} - Level: ${league.level} Members: ${league.members}/${league.limit}`;
+            option.addEventListener('click', function () {
+              // Display a welcome message (you can customize this)
+              alert(`Welcome to ${league.name}!`);
+              // Close the modal
+              leagueModal.style.display = 'none';
+            });
+            leagueOptions.appendChild(option);
+          });
+  
+          // Display the modal
+          leagueModal.style.display = 'block';
+        });
+      });
+  
+      // Add functionality to close the modal
+      var closeModal = document.querySelector('.close');
+      closeModal.addEventListener('click', function () {
+        leagueModal.style.display = 'none';
+      });
+  
+      // Close the modal if the user clicks outside of it
+      window.addEventListener('click', function (event) {
+        if (event.target == leagueModal) {
+          leagueModal.style.display = 'none';
+        }
+      });
+    });
+  </script>
+   
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var leagueItems = document.querySelectorAll('.league-item');
+    var modal = document.getElementById('leagueModal');
+    var modalContent = document.getElementById('modalContent');
+    var closeBtn = document.getElementById('closeModal');
+    var chooseGameText = document.querySelector('.choose-game');
+    var chosenLeagueText = document.createElement('span');
+
+    leagueItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+            var leagueName = item.getAttribute('data-league-name');
+            var level = item.getAttribute('data-level');
+            var currentMembers = item.getAttribute('data-members');
+            var maxMembers = item.getAttribute('data-max-members');
+
+            modalContent.innerHTML = `
+                <h2>${leagueName}</h2>
+                <p>Level: ${level}</p>
+                <p>Members: ${currentMembers}/${maxMembers}</p>
+                <p>Welcome to ${leagueName}!</p>
+            `;
+
+            modal.style.display = 'block';
+
+            // Change the text of the chooseGameText span
+            chooseGameText.textContent = `League Chosen: ${leagueName}`;
+            chooseGameText.classList.add('league-chosen');
+            document.body.appendChild(chosenLeagueText);
+        });
+    });
+
+    closeBtn.onclick = function () {
+        modal.style.display = 'none';
+        // Show "Choose a game" text again
+        chooseGameText.textContent = 'Choose your Game';
+        chooseGameText.classList.remove('league-chosen');
+    };
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            // Show "Choose a game" text again
+            chooseGameText.textContent = 'Choose your Game';
+            chooseGameText.classList.remove('league-chosen');
+        }
+    };
+});
+
+</script>
 
 
 </body>
