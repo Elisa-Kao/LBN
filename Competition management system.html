@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>競賽管理系統</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #56CCF2, #2F80ED);
+            background-size: cover;
+        }
+
+        #form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="form-container">
+        <h2>競賽管理系統</h2>
+
+        <label for="competitionDropdown">選擇競賽:</label>
+        <select id="competitionDropdown">
+            <option value="競賽1">競賽1</option>
+            <option value="競賽2">競賽2</option>
+            <option value="競賽3">競賽3</option>
+        </select>
+
+        <button onclick="createCompetition()">建立新競賽</button>
+        <button onclick="removeCompetition()">移除現有要求</button>
+
+        <label for="schedule">選擇時程:</label>
+        <input type="datetime-local" id="schedule" value="2022-01-01T00:00" min="2022-01-01T00:00">
+
+        <button onclick="submitRequest()">送出請求</button>
+    </div>
+
+    <script>
+        function createCompetition() {
+            var newCompetition = prompt("請輸入新競賽名稱:");
+            if (newCompetition !== null && newCompetition !== "") {
+                var competitionDropdown = document.getElementById("competitionDropdown");
+                var option = document.createElement("option");
+                option.text = newCompetition;
+                competitionDropdown.add(option);
+            }
+        }
+
+        function removeCompetition() {
+            var competitionDropdown = document.getElementById("competitionDropdown");
+            if (competitionDropdo
