@@ -96,4 +96,20 @@
 
         function removeCompetition() {
             var competitionDropdown = document.getElementById("competitionDropdown");
-            if (competitionDropdo
+            if (competitionDropdown.options.length > 0) {
+                var selectedIndex = competitionDropdown.selectedIndex;
+                competitionDropdown.remove(selectedIndex);
+            }
+        }
+
+        function submitRequest() {
+            var selectedCompetition = document.getElementById("competitionDropdown").value;
+            var selectedSchedule = document.getElementById("schedule").value;
+
+            var message = "已送出請求:\n競賽: " + selectedCompetition + "\n時程: " + selectedSchedule;
+            alert(message);
+        }
+    </script>
+
+</body>
+</html>
