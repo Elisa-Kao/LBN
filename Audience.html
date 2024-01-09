@@ -124,7 +124,7 @@
             border: none;
             border-radius: 5px;
             background-color: #a71e1e;
-            color: #955252;
+            color: #fffdfd;
             cursor: pointer;
             font-size: 14px; /* Adjust the font size based on your preference */
         }
@@ -143,7 +143,7 @@
             right: 20px;
             width: 320px;
             height: 300px;
-            background-color: rgba(30, 28, 28, 0.8);
+            background-color: rgba(97, 94, 94, 0.8);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -266,12 +266,16 @@
         function sendMessage() {
             var message = inputMessage.value.trim();
             if (message !== "") {
-                var messageElement = document.createElement("div");
-                messageElement.textContent = "[" + channelSelector.value + "] " + message;
-                chatMessages.appendChild(messageElement);
-                inputMessage.value = "";
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
+            var messageElement = document.createElement("div");
+            messageElement.textContent = "[" + channelSelector.value + "] " + message;
+
+            // Set color for input messages (you can change the color value)
+            messageElement.style.color = "#fff"; // Red color as an example
+
+            chatMessages.appendChild(messageElement);
+            inputMessage.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
         }
 
         sendMessageBtn.addEventListener("click", sendMessage);
@@ -298,15 +302,15 @@
             // Predefined messages
         var fixedMessages = [
             "666",
+            "6666666666666666",
             "這操作好頂",
             "璀璨綺蘿好頂",
             "打傳不揪",
             "左營區第29提莉",
-            "87",
+            "878787878787878787",
             "什麼爛操作 刪遊了八",
             "主播直播到幾點",
             "什麼都嗑只會害了你",
-            "老鐵666",
             "436套餐隨點隨送",
         ];
 
