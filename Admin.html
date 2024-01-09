@@ -1,31 +1,35 @@
 <!-- admin.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page - LBN</title>
-    <!-- Include any additional styles or scripts needed for the admin page -->
-    <link rel="stylesheet" href="admin-style.css">
 
-
-
-
-</head>
-<body>
-    <!-- Your admin page content goes here -->
-    <h2>Welcome to the Admin Page!</h2>
-    <h2>Select your identity.</h2>
-    <button id="btn1">管理員</button>
-    <button id="btn2">廣告商</button>
-    <button id="btn3">聯盟所有者</button>
     <style>
-        /* 可以在這裡添加一些 CSS 來美化按鈕 */
+        /* Inline styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://i.ibb.co/djWhXPC/81399b9483d68317b3e3d8273a374a10.jpg');
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 40px;
+        }
+
         button {
-            width: 150px;
-            padding: 10px 15px;
-            font-size: 16px;
+            width: 200px;
+            padding: 15px 20px;
+            font-size: 20px;
             cursor: pointer;
+            margin: 15px; /* Add margin for spacing */
         }
 
         #btn1 {
@@ -43,35 +47,38 @@
             color: white;
         }
     </style>
+</head>
+<body>
+    <!-- Your admin page content goes here -->
+    <h2>Welcome to the Admin Page!</h2>
+    <h2>Select your identity.</h2>
+    <button id="btn1">管理員</button>
+    <button id="btn2">廣告商</button>
+    <button id="btn3">聯盟所有者</button>
+
+    <!-- Add any other content specific to the admin page -->
+
     <script>
-        // 獲取按鈕元素
+        // Get button elements
         var btn1 = document.getElementById("btn1");
         var btn2 = document.getElementById("btn2");
         var btn3 = document.getElementById("btn3");
 
-        // 為按鈕添加點擊事件監聽器
+        // Add click event listeners to buttons
         btn1.addEventListener("click", function() {
-            // 跳轉到管理員登入頁面
+            // Redirect to admin login page
             window.location.href = "admin_login.html";
         });
 
         btn2.addEventListener("click", function() {
-            // 跳轉到廣告商登入頁面
+            // Redirect to advertiser login page
             window.location.href = "advertisers_login.html";
         });
 
         btn3.addEventListener("click", function() {
-            // 跳轉到管理員登入頁面
+            // Redirect to league user login page
             window.location.href = "leagueUser_login.html";
         });
     </script>
-  
-    <!-- Add any other content specific to the admin page -->
 </body>
 </html>
-
-
-
-
-
-
