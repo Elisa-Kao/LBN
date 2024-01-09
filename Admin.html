@@ -1,141 +1,84 @@
+<!-- admin.html -->
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-image: url('https://i.ibb.co/BcRNKNJ/390e8d5dcda269be5a30c5446ff8ae24.jpg');
-      background-position: center;
-      background-repeat: repeat;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      font-size: 25px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page - LBN</title>
 
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+    <style>
+        /* Inline styles */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://i.ibb.co/djWhXPC/81399b9483d68317b3e3d8273a374a10.jpg');
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 40px;
+        }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+        button {
+            width: 200px;
+            padding: 15px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 15px; /* Add margin for spacing */
+        }
 
-    form {
-      max-width: 400px;
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+        #btn1 {
+            background-color: #4CAF50;
+            color: white;
+        }
 
-    .inputbox {
-      position: relative;
-      margin-bottom: 20px;
-    }
+        #btn2 {
+            background-color: #008CBA;
+            color: white;
+        }
 
-    ion-icon {
-      position: absolute;
-      top: 50%;
-      left: 15px;
-      transform: translateY(-50%);
-      color: #555;
-    }
-
-    input {
-      width: calc(100% - 30px);
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    label {
-      display: none;
-    }
-
-    .forget {
-      margin-bottom: 20px;
-    }
-
-    button {
-      background-color: #e7a439;
-      color: white;
-      padding: 10px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .register {
-      margin-top: 20px;
-    }
-
-    .register a {
-      color: #4CAF50;
-    }
-
-    .register a:hover {
-      text-decoration: underline;
-    }
-
-    .forget a {
-  font-size: 14px; /* Adjust the font size as needed */
-}
-  </style>
-  <script>
-    // Function to handle form submission and redirection
-    function submitAdminForm() {
-      // Get the form elements
-      var email = document.getElementById('adminEmail').value;
-      var password = document.getElementById('adminPassword').value;
-
-      // You can add additional validation if needed
-
-      // Redirect to adminFunction.html
-      window.location.href = 'adminFunction.html';
-    }
-  </script>
+        #btn3 {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <h1>登入您的管理員帳號</h1>
-  </header>
-  <div class="background-section"></div>
-  <section class="container">
-    <form onsubmit="submitAdminForm(); return false;">
+    <!-- Your admin page content goes here -->
+    <h2>Welcome to the Admin Page!</h2>
+    <h2>Select your identity.</h2>
+    <button id="btn1">管理員</button>
+    <button id="btn2">廣告商</button>
+    <button id="btn3">聯盟所有者</button>
 
-      <div class="inputbox">
-        <ion-icon name="mail-outline"></ion-icon>
-        <input type="email" id="adminEmail" required placeholder="Email">
-      </div>
-      <div class="inputbox">
-        <ion-icon name="lock-closed-outline"></ion-icon>
-        <input type="password" id="adminPassword" required placeholder="Password">
-      </div>
-      <div class="forget">
-        <label for=""><input type="checkbox">Remember Me</label>
-        <a href="#">Forget Password</a>
-      </div>
-      <button type="submit">Log in</button>
-      
-    </form>
-  </section>
+    <!-- Add any other content specific to the admin page -->
+
+    <script>
+        // Get button elements
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+        var btn3 = document.getElementById("btn3");
+
+        // Add click event listeners to buttons
+        btn1.addEventListener("click", function() {
+            // Redirect to admin login page
+            window.location.href = "admin_login.html";
+        });
+
+        btn2.addEventListener("click", function() {
+            // Redirect to advertiser login page
+            window.location.href = "advertisers_login.html";
+        });
+
+        btn3.addEventListener("click", function() {
+            // Redirect to league user login page
+            window.location.href = "leagueUser_login.html";
+        });
+    </script>
 </body>
-
 </html>
