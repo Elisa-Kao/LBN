@@ -1,30 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
-
 <head>
-
-
 </head>
-
-
-
-
 <body>
   <header>
     <h1>登入您的聯盟所有者帳號</h1>
   </header>
   <div class="background-section"></div>
-    <section class="container">
-    <!-- Your existisng content goes here -->
+  <section class="container">
+    <!-- Your existing content goes here -->
 
-
-
-
-    <!-- New login form code -->
-    <form>
+    <!-- Modified login form code with redirection -->
+    <form action="leagueUser.html" method="post">
       <div class="inputbox">
         <ion-icon name="mail-outline"></ion-icon>
         <input type="email" required>
@@ -39,17 +26,12 @@
         <label for=""><input type="checkbox">Remember Me</label>
         <a href="#">Forget Password</a>
       </div>
-      <button>Log in</button>
-
+      <button type="submit">Log in</button>
+      <div class="register">
+        <p>Don't have an account <a href="#">Register</a></p>
+      </div>
     </form>
-    <!-- End of login form code -->
-  </div>
+    <!-- End of modified login form code -->
+  </section>
 </body>
-
-
-
-
 </html>
-
-
-
