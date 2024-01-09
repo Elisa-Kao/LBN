@@ -14,6 +14,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            margin-top:100px;
+            margin-bottom:100px;
         }
 
         section {
@@ -97,54 +99,46 @@
 <body>
 
     <section class="container">
-    <h1>Advertise with Us!</h1>
-    <p>您選擇的遊戲：傳X對決</p>
-    <p>您的廣告將於直播時進行投注</p>
+        <h1>Advertise with Us!</h1>
+        <p>您選擇的遊戲：傳X對決</p>
+        <p>您的廣告將於直播時進行投注</p>
 
-    <form id="sponsorForm">
-        <label for="companyName">Company Name:</label>
-        <input type="text" id="companyName" name="companyName" required>
+        <form id="sponsorForm">
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" name="companyName" required>
 
-        <label for="investAmount">Select Investment Amount:</label>
-        <select id="investAmount" name="investAmount" required>
-            <option value="1000000">10 minutes - $1,000,000</option>
-            <option value="1999999">20 minutes - $1,999,999</option>
-            <option value="999999999999999">1 day - $999,999,999,999,999</option>
-        </select>
+            <label for="investAmount">Select Investment Amount:</label>
+            <select id="investAmount" name="investAmount" required>
+                <option value="1000000">10 minutes - $1,000,000</option>
+                <option value="1999999">20 minutes - $1,999,999</option>
+                <option value="999999999999999">1 day - $999,999,999,999,999</option>
+            </select>
 
-     
-       
+            <div class="policy">
+                <p>I agree to the <a href="#">Agree Policy</a></p>
+            </div>
 
+            <div class="error-message" id="errorMessage"></div>
 
-        <div class="policy">
-            <p>I agree to the <a href="#">Agree Policy</a></p>
-        </div>
+            <button type="button" onclick="validateForm()">Invest Now</button>
+        </form>
+    </section>
 
-        <div class="error-message" id="errorMessage"></div>
+    <script>
+        function validateForm() {
+            var companyName = document.getElementById("companyName").value;
+            var investAmount = document.getElementById("investAmount").value;
 
-        <button type="button" onclick="validateForm()">Invest Now</button>
-    </form>
-</section>
-<script>
-    function validateForm() {
-        var companyName = document.getElementById("companyName").value;
-        var investAmount = document.getElementById("investAmount").value;
-        var advertisementURL = document.getElementById("advertisementURL").value;
-        var adImage = document.getElementById("adImage");
+            if (companyName === "" || investAmount === "") {
+                document.getElementById("errorMessage").innerText = "輸入資訊未完成，請輸入完整資訊";
+            } else {
+                // Display success message
+                alert("Thank you for Investing! We will contact you soon!");
 
-        if (companyName === "" || investAmount === "" || advertisementURL === "") {
-            document.getElementById("errorMessage").innerText = "輸入資訊未完成，請輸入完整資訊";
-        } else {
-            // Update the advertising image
-            adImage.src = advertisementURL;
-            
-            // You can add your logic here to handle the form submission, e.g., sending data to a server.
-            alert("Thank you for your investment!");
-
-            // Reset the error message
-            document.getElementById("errorMessage").innerText = "";
+                // Redirect to advertisersFunction.html
+                window.location.href = "advertisersFunction.html";
+            }
         }
-    }
-</script>
+    </script>
 </body>
 </html>
