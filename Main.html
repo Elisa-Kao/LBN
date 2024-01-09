@@ -216,6 +216,8 @@
       color: #333;
       text-align: center;
       font-family: 'Papyrus', sans-serif;
+      margin-left: 10px; /* Center the label horizontally */
+      width: 100%; /* Make the label take full width */
     }
 
     .inputbox label {
@@ -228,6 +230,14 @@
       pointer-events: none;
       transition: all 0.5s ease-in-out;
       font-family: 'Papyrus', sans-serif;
+    }
+
+    form .login-label {
+      font-size: 2rem;
+      color: #333;
+      text-align: center;
+      font-family: 'Papyrus', sans-serif;
+      margin-left: 70px; /* Center the label horizontally */
     }
 
     section {
@@ -452,7 +462,7 @@
   <section class="container">
     <!-- New login form code -->
     <form id="loginForm">
-      <label for="email">Login</label>
+      <label for="email" class="login-label">Login</label>
       <div class="inputbox">
           <ion-icon name="mail-outline"></ion-icon>
           <input type="email" name="email" required>
