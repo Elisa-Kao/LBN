@@ -149,7 +149,15 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-
+        #streamingPlatformLabel {
+            position: fixed;
+            top: 52%;
+            left: 20%;
+            font-size: 60px;
+            font-weight: bold;
+            color: #fff; /* Set your desired color */
+            z-index: 999; /* Ensure it's on top of other elements */
+        }
 
     </style>
 </head>
@@ -184,7 +192,7 @@
         </div>
     </div>
 
-    
+    <div id="streamingPlatformLabel">Streaming Platform</div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
