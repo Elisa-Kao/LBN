@@ -548,7 +548,7 @@ img {
     <div class="wrap">
         <!-- First row -->
         <div class="row">
-            <div class="item" data-link="Game1.html">
+            <div class="item" onclick="window.location.href='Game1.html';" style="cursor: pointer;">
                 <img src="https://i.ibb.co/MNZdckF/20833a91c96e8af78274de9ce61bm825.jpg">
                 <div class="description">
                     <h2>頭文字F</h2>
@@ -666,6 +666,8 @@ img {
   </div>
 
   <script>
+
+
     document.addEventListener('DOMContentLoaded', function () {
       var leagueItems = document.querySelectorAll('.league-item');
       var leagueModal = document.getElementById('leagueModal');
