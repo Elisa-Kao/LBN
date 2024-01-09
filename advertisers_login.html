@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    // Function to handle form submission and redirection
+    function submitForm() {
+      // Get the form elements
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      // You can add additional validation if needed
+
+      // Redirect to advertisersFunction.html
+      window.location.href = 'advertisersFunction.html';
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -11,16 +24,16 @@
     <!-- Your existing content goes here -->
 
     <!-- Modified login form code with redirection -->
-    <form action="advertisersFunction.html" method="post">
+    <form onsubmit="submitForm(); return false;">
 
       <div class="inputbox">
         <ion-icon name="mail-outline"></ion-icon>
-        <input type="email" required>
+        <input type="email" id="email" required>
         <label for="">Email</label>
       </div>
       <div class="inputbox">
         <ion-icon name="lock-closed-outline"></ion-icon>
-        <input type="password" required>
+        <input type="password" id="password" required>
         <label for="">Password</label>
       </div>
       <div class="forget">
