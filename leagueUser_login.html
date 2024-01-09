@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
+
+
 <head>
+  <script>
+    function submitForm() {
+      // Get the form elements
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      // You can add additional validation if needed
+
+      // Redirect to a.html
+      window.location.href = 'a.html';
+    }
+  </script>
+
 </head>
+
+
+
+
 <body>
   <header>
     <h1>登入您的聯盟所有者帳號</h1>
   </header>
   <div class="background-section"></div>
   <section class="container">
-    <!-- Your existing content goes here -->
+    <!-- New login form code -->
+    <form onsubmit="submitForm(); return false;">
 
-    <!-- Modified login form code with redirection -->
-    <form action="leagueUser.html" method="post">
       <div class="inputbox">
-        <ion-icon name="mail-outline"></ion-icon>
-        <input type="email" required>
-        <label for="">Email</label>
+        <input type="email" id="email" required>
+        <label for="email">Email</label>
       </div>
       <div class="inputbox">
-        <ion-icon name="lock-closed-outline"></ion-icon>
-        <input type="password" required>
-        <label for="">Password</label>
+        <input type="password" id="password" required>
+        <label for="password">Password</label>
       </div>
       <div class="forget">
         <label for=""><input type="checkbox">Remember Me</label>
@@ -31,7 +49,14 @@
         <p>Don't have an account <a href="#">Register</a></p>
       </div>
     </form>
-    <!-- End of modified login form code -->
+    <!-- End of login form code -->
   </section>
 </body>
+
+
+
+
 </html>
+
+
+
