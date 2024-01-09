@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 其他的 head 內容 -->
-
+  <!-- Other head content -->
 
   <style>
-    /* 一些基本的樣式，你可以根據需要進行調整 */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://i.ibb.co/wYp2LHB/22e9327b0033c9491cbcc5f103c8809e.jpg');
+      color:#fff;
+    }
+
+    /* Basic styles - adjust as needed */
     .dropdown {
       position: relative;
       display: inline-block;
+      margin: 10px;
     }
-
 
     .dropdown-content {
       display: none;
@@ -21,52 +32,52 @@
       z-index: 1;
     }
 
-
     .dropdown-content a {
       color: black;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
+      font-size: 16px;
     }
-
 
     .dropdown-content a:hover {
       background-color: #f1f1f1;
     }
 
-
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-
-    /* 新增的樣式 */
+    /* Additional styles */
     #additionalLabel {
       display: none;
-      margin-top: 10px; /* 距離上方的距離，可以根據需要調整 */
+      margin-top: 10px;
+      font-size: 18px;
     }
 
-
-    #gameForm {
-      display: none;
-      margin-top: 10px; /* 距離上方的距離，可以根據需要調整 */
-    }
-
-
+    #gameForm,
     #gameTypeDropdown {
       display: none;
-      margin-top: 10px; /* 距離上方的距離，可以根據需要調整 */
+      margin-top: 10px;
     }
 
-
     input[type="text"] {
-      width: 200px; /* 輸入框的寬度，可以根據需要調整 */
+      width: 300px;
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 15px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <!-- 頁面內容部分 -->
-
+  <!-- Page content -->
 
   <div class="dropdown">
     <button onclick="showGameForm()">新增遊戲</button>
@@ -76,79 +87,66 @@
       <a href="#" onclick="showAdditionalLabel('系列賽')">系列賽</a>
     </div>
   </div>
-  <!-- 玩家評分的 dropdown -->
+
   <div class="dropdown">
     <button onclick="showPlayerRatingDropdown()">玩家評分</button>
     <div id="playerRatingDropdown" class="dropdown-content">
       <a href="#" onclick="showAdditionalLabel('玩家A評分')">評分類型1</a>
       <a href="#" onclick="showAdditionalLabel('玩家B評分')">評分類型2</a>
-      <!-- 可以根據需要新增更多評分類型的選項 -->
+      <!-- Add more rating options as needed -->
     </div>
   </div>
 
-
-  <!-- 管理用戶的 dropdown -->
   <div class="dropdown">
     <button onclick="showManageUserDropdown()">管理用戶</button>
     <div id="manageUserDropdown" class="dropdown-content">
       <a href="#" onclick="showAdditionalLabel('管理用戶A')">用戶類型1</a>
       <a href="#" onclick="showAdditionalLabel('管理用戶B')">用戶類型2</a>
-      <!-- 可以根據需要新增更多用戶類型的選項 -->
+      <!-- Add more user management options as needed -->
     </div>
   </div>
 
-
-  <!-- 顯示的 label -->
   <div id="additionalLabel">你選擇的是：<span id="selectedOption"></span></div>
 
-
-  <!-- 遊戲名稱輸入表單 -->
   <form id="gameForm">
     <label for="gameName">請輸入遊戲名稱：</label>
     <input type="text" id="gameName" required>
     <button type="button" onclick="showGameTypeDropdown()">下一步</button>
   </form>
 
-
   <script>
     function showGameForm() {
+      resetAdditionalLabel();
       var gameForm = document.getElementById("gameForm");
       gameForm.style.display = 'block';
     }
 
-
     function showGameTypeDropdown() {
+      resetAdditionalLabel();
       var gameTypeDropdown = document.getElementById("gameTypeDropdown");
       var gameForm = document.getElementById("gameForm");
-     
-      // 隱藏輸入遊戲名稱的表單
+
       gameForm.style.display = 'none';
-
-
-      // 顯示競賽類型的下拉式選單
       gameTypeDropdown.style.display = 'block';
     }
-
 
     function showAdditionalLabel(option) {
       var additionalLabel = document.getElementById("additionalLabel");
       var selectedOption = document.getElementById("selectedOption");
+      var gameTypeDropdown = document.getElementById("gameTypeDropdown");
 
-
-      // 顯示選擇的賽事類型
       selectedOption.textContent = option;
-
-
-      // 顯示 label
       additionalLabel.style.display = 'block';
-
-
-      // 隱藏競賽類型的下拉式選單
       gameTypeDropdown.style.display = 'none';
+    }
+
+    function resetAdditionalLabel() {
+      var additionalLabel = document.getElementById("additionalLabel");
+      var selectedOption = document.getElementById("selectedOption");
+
+      selectedOption.textContent = '';
+      additionalLabel.style.display = 'none';
     }
   </script>
 </body>
 </html>
-
-
-
