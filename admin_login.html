@@ -1,6 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://i.ibb.co/PYWkQFN/d8c1b9ff984395109f044c1c245f54bc.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      height: 100vh; 
+      font-size: 25px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .inputbox {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    ion-icon {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      color: #555;
+    }
+
+    input {
+      width: calc(100% - 30px);
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    label {
+      display: none;
+    }
+
+    .forget {
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .register {
+      margin-top: 20px;
+    }
+
+    .register a {
+      color: #4CAF50;
+    }
+
+    .register a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -8,19 +100,14 @@
   </header>
   <div class="background-section"></div>
   <section class="container">
-    <!-- Your existing content goes here -->
-
-    <!-- Modified login form code with redirection -->
     <form action="adminFunction.html" method="post">
       <div class="inputbox">
         <ion-icon name="mail-outline"></ion-icon>
-        <input type="email" required>
-        <label for="">Email</label>
+        <input type="email" required placeholder="Email">
       </div>
       <div class="inputbox">
         <ion-icon name="lock-closed-outline"></ion-icon>
-        <input type="password" required>
-        <label for="">Password</label>
+        <input type="password" required placeholder="Password">
       </div>
       <div class="forget">
         <label for=""><input type="checkbox">Remember Me</label>
@@ -28,10 +115,9 @@
       </div>
       <button type="submit">Log in</button>
       <div class="register">
-        <p>Don't have an account <a href="#">Register</a></p>
+        <p>Don't have an account? <a href="#">Register</a></p>
       </div>
     </form>
-    <!-- End of modified login form code -->
   </section>
 </body>
 </html>
